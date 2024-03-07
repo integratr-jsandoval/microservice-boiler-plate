@@ -6,6 +6,6 @@
 
 - Run in your root folder `docker-compose up -d` and wait until it finishes
 
-- Open your browser in [http://localhost:7001](http://localhost:7001) or test with postman
+- Open your browser in [http://localhost:7021](http://localhost:7021) or test with postman
 
 - Enjoy!

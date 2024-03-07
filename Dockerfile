@@ -1,4 +1,4 @@
-FROM php:8.0.5-fpm-alpine3.13
+FROM php:8.1.5-fpm-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
     COMPOSER_DISABLE_XDEBUG_WARN=1 \
@@ -29,7 +29,7 @@ RUN set -xe \
     libxslt-dev \
     git \
     nodejs \
-    nodejs-npm \
+    npm \
     supervisor \
     postgresql-client \
     postgresql-dev \
@@ -52,7 +52,6 @@ RUN set -xe \
     gd \
     bcmath \
     opcache \
-    iconv \
     mysqli \
     pdo \
     pdo_mysql \
