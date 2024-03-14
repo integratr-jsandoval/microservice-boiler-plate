@@ -52,5 +52,6 @@ class DepartmentController extends BaseController
     {
         $department = $this->departmentService->updateDepartment($request->validated(), $deptId);
         return new DepartmentResource($department);
+        
     }
 }
