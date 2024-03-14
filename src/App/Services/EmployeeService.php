@@ -19,50 +19,54 @@ class EmployeeService
         $employee = Employee::create($payload);
         return $employee;
     }
+
     /**
      * get data
      *
-     * @return void
+     * @return Employee
      */
     public function getEmployee()
     {
         $employee = Employee::get();
         return $employee;
     }
+
     /**
      * show data using id
      *
      * @param string $employeeId
      *
-     * @return void
+     * @return Employee
      */
-    public function showEmployee(string $employeeId)
+    public function showEmployee(string $employeeId): Employee
     {
         $employee = Employee::findOrFail($employeeId);
         return $employee;
     }
-    /**
-     * delete data using id 
-     *
-     * @param string $employeeId
-     *
-     * @return void
-     */
-    public function deletemployee(string $employeeId)
+
+        /**
+        * delete data using id
+        *
+        * @param string $employeeId
+        *
+        * @return Employee
+        */
+    public function deleteEmployee(string $employeeId): Employee
     {
         $employee = Employee::findOrFail($employeeId);
         $employee->delete();
         return $employee;
     }
-/**
- * update data using id
- *
- * @param array $payload
- * @param string $employeeId
- *
- * @return void
- */
-    public function updateEmployee(array $payload, string $employeeId)
+
+    /**
+     * update data using id
+     *
+     * @param array $payload
+     * @param string $employeeId
+     *
+     * @return Employee
+     */
+    public function updateEmployee(array $payload, string $employeeId): Employee
     {
         $employee = Employee::where('id', $employeeId)->firstOrfail();
         $employee->update($payload);

@@ -8,10 +8,9 @@ use MicroService\App\Requests\DepartmentStoreRequest;
 // use MicroService\App\Contracts\DepartmentContract;
 
 class DepartmentService
-
 {
     /**
-     * store data 
+     *store data
      *
      * @param array $payload
      *
@@ -23,9 +22,9 @@ class DepartmentService
         return $department;
     }
     /**
-     * get data
+     *get data
      *
-     * @return void
+     * @return Department
      */
     public function getDepartment()
     {
@@ -33,43 +32,41 @@ class DepartmentService
         return $department;
     }
     /**
-     * show list using ID
+     * show list using id
      *
      * @param string $deptId
      *
-     * @return void
+     * @return Department
      */
-    public function showDepartment(string $deptId)
+    public function showDepartment(string $deptId): Department
     {
         $department = Department::findOrFail($deptId);
         return $department;
     }
-    /**
-     * deleting data using id
-     *
-     * @param string $deptId
-     *
-     * @return void
-     */
-    public function deleteDepatment(string $deptId)
+   /**
+    * deleting data using id
+    *
+    * @param string $deptId
+    *
+    * @return Department
+    */
+    public function deleteDepartment(string $deptId): Department
     {
         $department = Department::findOrFail($deptId);
         $department->delete();
         return $department;
     }
-/**
- * update data using id
- *
- * @param array $payload
- * @param string $deptId
- *
- * @return void
- */
-    public function updateDepartment(array $payload, string $deptId)
+ /**
+  * update data using id
+  * @param array $payload
+  * @param string $deptId
+  *
+  * @return Department
+  */
+    public function updateDepartment(array $payload, string $deptId): Department
     {
         $department = Department::where('id', $deptId)->firstOrfail();
         $department->update($payload);
         return $department;
     }
-
 }

@@ -3,6 +3,7 @@
 namespace MicroService\App\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DepartmentResource extends JsonResource
 {

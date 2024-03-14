@@ -35,50 +35,51 @@ class DepartmentController extends BaseController
         return new DepartmentResource($department);
     }
 
-    /**
-     * Get Data from Department Table
-     *
-     * @return void
-     */
+     /**
+      * Get Data from Department Table
+      *
+      * @return DepartmentResource
+      */
     public function getDepartment()
     {
         $department = $this->departmentService->getDepartment();
-        return DepartmentResource::collection($department);
+        return $department;
     }
-
-/**
- * Show Data from Department Table
- *
- * @param string $deptId
- *
- * @return void
- */
-    public function showDepartment(string $deptId)
+ /**
+  * Show Data from Department Table
+  *
+  * @param string $deptId
+  *
+  * @return DepartmentResource
+  */
+    public function showDepartment(string $deptId): DepartmentResource
     {
+        {
         $department = $this->departmentService->showDepartment($deptId);
         return new DepartmentResource($department);
+         }
     }
-
-/**
- * Delete Data from Department Table
- *
- * @param string $deptId
- *
- * @return void
- */
+    /**
+     * Delete Data from Department Table
+     *
+     * @param string $deptId
+     *
+     * @return DepartmentResource
+     */
     public function deleteDepartment(string $deptId)
     {
-        $department = $this->departmentService->deleteDepatment($deptId);
+        $department = $this->departmentService->deleteDepartment($deptId);
+        return response()->json(['message' => 'Department Successfully Deleted!'], 200);
     }
-/**
- * Update Data from Department Table
- *
- * @param DepartmentStoreRequest $request
- * @param string $deptId
- *
- * @return void
- */
-    public function updateDepartment(DepartmentStoreRequest $request, string $deptId)
+    /**
+     * Update Data from Department Table
+     *
+     * @param DepartmentStoreRequest $request
+     * @param string $deptId
+     *
+     * @return DepartmentResource
+     */
+    public function updateDepartment(DepartmentStoreRequest $request, string $deptId): DepartmentResource
     {
         $department = $this->departmentService->updateDepartment($request->validated(), $deptId);
         return new DepartmentResource($department);

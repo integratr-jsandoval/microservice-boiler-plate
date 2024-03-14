@@ -49,7 +49,7 @@ class TitleController extends BaseController
  *
  * @return void
  */
-    public function showTitle(string $titleId)
+    public function showTitle(string $titleId): TitleResource
     {
         $title = $this->titleService->showTitle($titleId);
         return new TitleResource($title);
@@ -64,6 +64,7 @@ class TitleController extends BaseController
     public function deleteTitle(string $titleId)
     {
         $title = $this->titleService->deleteTitle($titleId);
+        return response()->json(['message' => 'Department Successfully Deleted!'], 200);
     }
 /**
  * update data from title Table
@@ -73,7 +74,7 @@ class TitleController extends BaseController
  *
  * @return void
  */
-    public function updateTitle(TitleStoreRequest $request, string $titleId)
+    public function updateTitle(TitleStoreRequest $request, string $titleId): TitleResource
     {
         $title = $this->titleService->updateTitle($request->validated(), $titleId);
         return new TitleResource($title);

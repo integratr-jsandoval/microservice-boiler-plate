@@ -21,36 +21,36 @@ class EmployeeController extends BaseController
     {
         $this->employeeService = $employeeService;
     }
-/**
- * store
- *
- * @param EmployeeStoreRequest $request
- *
- * @return void
- */
-    public function storeEmployee(
-        EmployeeStoreRequest $request
-    ): EmployeeResource {
+    /**
+     * store data
+     *
+     * @param EmployeeStoreRequest $request
+     *
+     * @return EmployeeResource
+     */
+    public function storeEmployee(EmployeeStoreRequest $request): EmployeeResource
+    {
         $employee = $this->employeeService->storeEmployee($request->validated());
         return new EmployeeResource($employee);
-    }/**
+    }
+    /**
      * get data from employee Table
      *
-     * @return void
+     * @return EmployeeResource
      */
     public function getEmployee()
     {
         $employee = $this->employeeService->getEmployee();
         return EmployeeResource::collection($employee);
     }
-/**
- * show data from emmployee Table
- *
- * @param string $employeeId
- *
- * @return void
- */
-    public function showEmployee(string $employeeId)
+    /**
+     * show data from emmployee Table
+     *
+     * @param string $employeeId
+     *
+     * @return EmployeeResource
+     */
+    public function showEmployee(string $employeeId): EmployeeResource
     {
         $employee = $this->employeeService->showEmployee($employeeId);
         return new EmployeeResource($employee);
@@ -60,21 +60,22 @@ class EmployeeController extends BaseController
      *
      * @param string $employeeId
      *
-     * @return void
+     * @return EmployeeResource
      */
     public function deleteEmployee(string $employeeId)
     {
-        $employee = $this->employeeService->deletemployee($employeeId);
+        $employee = $this->employeeService->deleteEmployee($employeeId);
+        return response()->json(['message' => 'Department Successfully Deleted!'], 200);
     }
-/**
- * update data from emmployee Table
- *
- * @param EmployeeStoreRequest $request
- * @param string $employeeId
- *
- * @return void
- */
-    public function updateEmployee(EmployeeStoreRequest $request, string $employeeId)
+    /**
+     * update data from emmployee Table
+     *
+     * @param EmployeeStoreRequest $request
+     * @param string $employeeId
+     *
+     * @return EmployeeResource
+     */
+    public function updateEmployee(EmployeeStoreRequest $request, string $employeeId): EmployeeResource
     {
         $employee = $this->employeeService->updateEmployee($request->validated(), $employeeId);
         return new EmployeeResource($employee);

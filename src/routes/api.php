@@ -21,7 +21,7 @@ Route::group([
     'namespace' => 'Admin',
     'prefix' => 'admin'
 ], function () {
-    Route::group(['prefix' => 'employees    '], function () {
+    Route::group(['prefix' => 'employees'], function () {
         //
         Route::post('/store', 'employeeController@storeEmployee');
         Route::get('/list', 'employeeController@getEmployee');

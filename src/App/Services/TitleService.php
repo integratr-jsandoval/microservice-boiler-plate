@@ -6,7 +6,6 @@ use MicroService\App\Contracts\TitleContract;
 use MicroService\App\Models\Title;
 
 class TitleService
-
 {
     /**
      * store data
@@ -22,6 +21,8 @@ class TitleService
     }
     /**
      * get data
+     *
+     * @return Title
      */
     public function getTitle()
     {
@@ -33,35 +34,35 @@ class TitleService
      *
      * @param string $titleId
      *
-     * @return void
+     * @return Title
      */
-    public function showTitle(string $titleId)
+    public function showTitle(string $titleId): Title
     {
         $title = Title::findOrFail($titleId);
         return $title;
     }
     /**
-     * delete ing data using id
+     * deleting data using id
      *
      * @param string $titleId
      *
-     * @return void
+     * @return Title
      */
-    public function deleteTitle(string $titleId)
+    public function deleteTitle(string $titleId): Title
     {
         $title = Title::findOrFail($titleId);
         $title->delete();
         return $title;
     }
-/**
- * update data using id
- *
- * @param array $payload
- * @param string $titleId
- *
- * @return void
- */
-    public function updateTitle(array $payload, string $titleId)
+    /**
+     * update data using id
+     *
+     * @param array $payload
+     * @param string $titleId
+     *
+     * @return Title
+     */
+    public function updateTitle(array $payload, string $titleId): Title
     {
     $title = Title::where('id', $titleId)->firstOrfail();
     $title->update($payload);

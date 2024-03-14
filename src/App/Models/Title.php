@@ -9,7 +9,7 @@ class Title extends Model
 {
     use HasUuids;
 
-    public const RESOURCE_KEY = 'employee_title';
+    public const RESOURCE_KEY = 'employee_titles';
     protected $table = self::RESOURCE_KEY;
     protected $keyType = 'string';
 
