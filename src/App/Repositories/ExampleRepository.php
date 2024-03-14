@@ -2,10 +2,10 @@
 
 namespace MicroService\App\Repositories;
 
-use Geekhives\BaseRepository\Service\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Integratrcorp\Baserepository\Service\BaseRepository;
 use MicroService\App\Models\ExampleModel;
 
 class ExampleRepository extends BaseRepository

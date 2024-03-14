@@ -95,4 +95,3 @@ RUN chmod +x /start.sh
 WORKDIR /var/www
 
 EXPOSE 9000
-CMD ["/start.sh"]

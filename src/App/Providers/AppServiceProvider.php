@@ -2,8 +2,10 @@
 
 namespace MicroService\App\Providers;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
+use MicroService\App\Services\ItemService;
+use MicroService\App\Contracts\ItemContract;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,5 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Factory::guessFactoryNamesUsing(function ($class) {
             return 'Database\\Factories\\' . class_basename($class) . 'Factory';
         });
+
+        $this->app->bind(ItemContract::class, ItemService::class);
     }
 }
