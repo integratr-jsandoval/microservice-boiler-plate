@@ -31,24 +31,47 @@ class EmployeeController extends BaseController
         $employee = $this->employeeService->storeEmployee($request->validated());
         return new EmployeeResource($employee);
     }
-
+    /**
+     * Collection of list
+     *
+     * @return void
+     */
     public function getEmployee()
     {
         $employee = $this->employeeService->getEmployee();
         return EmployeeResource::collection($employee);
     }
-
+    /**
+     * Show specific list using id
+     *
+     * @param string $employeeId
+     *
+     * @return void
+     */
     public function showEmployee(string $employeeId)
     {
         $employee = $this->employeeService->showEmployee($employeeId);
         return new EmployeeResource($employee);
     }
-
+    /**
+     * Delete
+     *
+     * @param string $employeeId
+     *
+     * @return void
+     */
     public function deleteEmployee(string $employeeId)
     {
         $employee = $this->employeeService->deleteEmployee($employeeId);
     }
-
+    /**
+     * Update
+     *
+     * @param EmployeeStoreRequest $request
+     * @param string $employeeId
+     *
+     * @return void
+     */
     public function updateEmployee(EmployeeStoreRequest $request, string $employeeId)
     {
         $employee = $this->employeeService->updateEmployee($request->validated(), $employeeId);
