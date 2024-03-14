@@ -24,7 +24,9 @@ class EmployeeController extends BaseController
     /**
      * Store
      *
-     * @param
+     * @param EmployeeStoreRequest $request
+     *
+     * @return EmployeeResource
      */
     public function storeEmployee(EmployeeStoreRequest $request): EmployeeResource
     {

@@ -23,7 +23,9 @@ class TitleController extends BaseController
     /**
      * Store
      *
-     * @param
+     * @param TitleStoreRequest $request
+     *
+     * @return TitleResource
      */
     public function storeTitle(TitleStoreRequest $request): TitleResource
     {
