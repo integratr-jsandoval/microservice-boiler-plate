@@ -14,7 +14,7 @@ class DepartmentController extends BaseController
 {
     protected $departmentService;
 /**
- * Undocumented function
+ * initialize department service
  *
  * @param DepartmentService $departmentService
  */
@@ -23,7 +23,7 @@ class DepartmentController extends BaseController
         $this->departmentService = $departmentService;
     }
 /**
- * store
+ * Store Data from Department Table
  *
  * @param DepartmentStoreRequest $request
  *
@@ -34,22 +34,50 @@ class DepartmentController extends BaseController
         $department = $this->departmentService->storeDepartment($request->validated());
         return new DepartmentResource($department);
     }
+
+    /**
+     * Get Data from Department Table
+     *
+     * @return void
+     */
     public function getDepartment()
     {
         $department = $this->departmentService->getDepartment();
         return DepartmentResource::collection($department);
     }
 
+/**
+ * Show Data from Department Table
+ *
+ * @param string $deptId
+ *
+ * @return void
+ */
     public function showDepartment(string $deptId)
     {
         $department = $this->departmentService->showDepartment($deptId);
         return new DepartmentResource($department);
     }
+
+/**
+ * Delete Data from Department Table
+ *
+ * @param string $deptId
+ *
+ * @return void
+ */
     public function deleteDepartment(string $deptId)
     {
         $department = $this->departmentService->deleteDepatment($deptId);
     }
-
+/**
+ * Update Data from Department Table
+ *
+ * @param DepartmentStoreRequest $request
+ * @param string $deptId
+ *
+ * @return void
+ */
     public function updateDepartment(DepartmentStoreRequest $request, string $deptId)
     {
         $department = $this->departmentService->updateDepartment($request->validated(), $deptId);

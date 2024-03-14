@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('employee', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('department_id');
             $table->string('employee_id');
             $table->string('first_name');
             $table->string('last_name');
@@ -20,6 +21,11 @@ return new class extends Migration
             $table->string('contact');
             $table->string('address');
             $table->timestamps();
+
+            // $table->foreign('department_id')
+            // ->references('id')
+            // ->on('departments')
+            // ->onDelete('CASCADE');
         });
     }
 
