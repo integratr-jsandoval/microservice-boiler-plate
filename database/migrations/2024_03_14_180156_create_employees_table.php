@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('department_id');
-            //$table->uuid('title_id')->primary();
+            $table->foreignUuid('department_id');
             $table->string('employee_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('middle_name');
             $table->string('contact');
             $table->string('address');
-            //$table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }

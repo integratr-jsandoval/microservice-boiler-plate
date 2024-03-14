@@ -21,7 +21,7 @@ class TitleController extends BaseController
         $this->titleService = $titleService;
     }
     /**
-     * Store
+     * Store data
      *
      * @param TitleStoreRequest $request
      *
@@ -33,9 +33,9 @@ class TitleController extends BaseController
         return new TitleResource($title);
     }
     /**
-     * Collection of the list.
+     * Collection of data
      *
-     * @return void
+     * @return TitleResource
      */
     public function getTitle()
     {
@@ -47,33 +47,34 @@ class TitleController extends BaseController
      *
      * @param string $titleid
      *
-     * @return void
+     * @return TitleResource
      */
-    public function showTitle(string $titleid)
+    public function showTitle(string $titleid): TitleResource
     {
         $title = $this->titleService->showTitle($titleid);
         return new TitleResource($title);
     }
     /**
-     * Delete
+     * Delete data
      *
      * @param string $titleid
      *
-     * @return void
+     * @return TitleResource
      */
     public function deleteTitle(string $titleid)
     {
         $title = $this->titleService->deleteTitle($titleid);
+        return response()->json(['message' => 'Successfully Deleted!'], 200);
     }
     /**
-     * Update
+     * Update data
      *
      * @param TitleStoreRequest $request
      * @param string $titleid
      *
-     * @return void
+     * @return TitleResource
      */
-    public function updateTitle(TitleStoreRequest $request, string $titleid)
+    public function updateTitle(TitleStoreRequest $request, string $titleid): TitleResource
     {
         $title = $this->titleService->updateTitle($request->validated(), $titleid);
         return new TitleResource($title);

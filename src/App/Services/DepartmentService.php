@@ -9,7 +9,7 @@ use MicroService\App\Resources\DepartmentResource;
 class DepartmentService
 {
     /**
-     * Store
+     * Store data
      *
      * @param array $payload
      *
@@ -21,9 +21,9 @@ class DepartmentService
         return $department;
     }
     /**
-     * Collection of the list
+     * Collection of data
      *
-     * @return void
+     * @return Department
      */
     public function getDepartment()
     {
@@ -35,35 +35,35 @@ class DepartmentService
      *
      * @param string $deptId
      *
-     * @return void
+     * @return Department
      */
-    public function showDepartment(string $deptId)
+    public function showDepartment(string $deptId): Department
     {
         $department = Department::findOrFail($deptId);
         return $department;
     }
    /**
-    * Delete
+    * Delete data
     *
     * @param string $deptId
     *
-    * @return void
+    * @return Department
     */
-    public function deleteDepartment(string $deptId)
+    public function deleteDepartment(string $deptId): Department
     {
         $department = Department::findOrFail($deptId);
         $department->delete();
         return $department;
     }
     /**
-     * Update
+     * Update data
      *
      * @param array $payload
      * @param string $deptId
      *
-     * @return void
+     * @return Department
      */
-    public function updateDepartment(array $payload, string $deptId)
+    public function updateDepartment(array $payload, string $deptId): Department
     {
         $department = Department::where('id', $deptId)->firstOrFail();
         $department->update($payload);

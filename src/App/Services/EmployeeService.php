@@ -8,7 +8,7 @@ use MicroService\App\Models\Employee;
 class EmployeeService
 {
     /**
-     * Store
+     * Store data
      *
      * @param array $payload
      *
@@ -20,9 +20,9 @@ class EmployeeService
         return $employee;
     }
     /**
-     * Collection of the list
+     * Collection of data
      *
-     * @return void
+     * @return Employee
      */
     public function getEmployee()
     {
@@ -30,39 +30,39 @@ class EmployeeService
         return $employee;
     }
     /**
-     * Show list using id
+     * Show specific list using id
      *
      * @param string $employeeId
      *
-     * @return void
+     * @return Employee
      */
-    public function showEmployee(string $employeeId)
+    public function showEmployee(string $employeeId): Employee
     {
         $employee = Employee::findOrFail($employeeId);
         return $employee;
     }
     /**
-     * Delete
+     * Delete data
      *
      * @param string $employeeId
      *
-     * @return void
+     * @return Employee
      */
-    public function deleteEmployee(string $employeeId)
+    public function deleteEmployee(string $employeeId): Employee
     {
         $employee = Employee::findOrFail($employeeId);
         $employee->delete();
         return $employee;
     }
     /**
-     * Update
+     * Update data
      *
      * @param array $payload
      * @param string $employeeId
      *
-     * @return void
+     * @return Employee
      */
-    public function updateEmployee(array $payload, string $employeeId)
+    public function updateEmployee(array $payload, string $employeeId): Employee
     {
         $employee = Employee::where('id', $employeeId)->firstOrFail();
         $employee->update($payload);

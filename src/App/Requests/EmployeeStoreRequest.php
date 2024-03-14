@@ -14,6 +14,7 @@ class EmployeeStoreRequest extends BaseRequest
     public function rules(): array
     {
         return [
+            'department_id' => ['required'],
             'employee_id' => ['required'],
             'first_name' => ['required'],
             'last_name' => ['required'],

@@ -21,7 +21,7 @@ class DepartmentController extends BaseController
         $this->departmentService = $departmentService;
     }
     /**
-     * Store
+     * Store data
      *
      * @param DepartmentStoreRequest $request
      *
@@ -33,9 +33,9 @@ class DepartmentController extends BaseController
         return new DepartmentResource($department);
     }
     /**
-     * Collection of the list
+     * Collection of data
      *
-     * @return void
+     * @return DepartmentResource
      */
     public function getDepartment()
     {
@@ -47,33 +47,34 @@ class DepartmentController extends BaseController
      *
      * @param string $deptId
      *
-     * @return void
+     * @return DepartmentResource
      */
-    public function showDepartment(string $deptId)
+    public function showDepartment(string $deptId): DepartmentResource
     {
         $department = $this->departmentService->showDepartment($deptId);
         return new DepartmentResource($department);
     }
     /**
-     * Delete
+     * Delete data
      *
      * @param string $deptId
      *
-     * @return void
+     * @return DepartmentResource
      */
     public function deleteDepartment(string $deptId)
     {
         $department = $this->departmentService->deleteDepartment($deptId);
+        return response()->json(['message' => 'Successfully Deleted!'], 200);
     }
     /**
-     * Update
+     * Update data
      *
      * @param DepartmentStoreRequest $request
      * @param string $deptId
      *
-     * @return void
+     * @return DepartmentResource
      */
-    public function updateDepartment(DepartmentStoreRequest $request, string $deptId)
+    public function updateDepartment(DepartmentStoreRequest $request, string $deptId): DepartmentResource
     {
         $department = $this->departmentService->updateDepartment($request->validated(), $deptId);
         return new DepartmentResource($department);

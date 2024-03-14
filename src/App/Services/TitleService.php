@@ -4,11 +4,12 @@ namespace MicroService\App\Services;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use MicroService\App\Models\Title;
+use MicroService\App\Resources\TitleResource;
 
 class TitleService
 {
     /**
-     * Store
+     * Store data
      *
      * @param array $payload
      *
@@ -20,7 +21,7 @@ class TitleService
         return $title;
     }
     /**
-     * Collection of the list
+     * Collection of data
      *
      * @return void
      */
@@ -34,35 +35,35 @@ class TitleService
      *
      * @param string $titleid
      *
-     * @return void
+     * @return Title
      */
-    public function showTitle(string $titleid)
+    public function showTitle(string $titleid): Title
     {
         $title = Title::findOrFail($titleid);
         return $title;
     }
     /**
-     * Delete
+     * Delete data
      *
      * @param string $titleid
      *
-     * @return void
+     * @return Title
      */
-    public function deleteTitle(string $titleid)
+    public function deleteTitle(string $titleid): Title
     {
         $title = Title::findOrFail($titleid);
         $title->delete();
         return $title;
     }
     /**
-     * Update
+     * Update data
      *
      * @param array $payload
      * @param string $titleid
      *
-     * @return void
+     * @return Title
      */
-    public function updateTitle(array $payload, string $titleid)
+    public function updateTitle(array $payload, string $titleid): Title
     {
         $title = Title::where('id', $titleid)->firstOrFail();
         $title->update($payload);

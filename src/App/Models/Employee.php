@@ -14,6 +14,7 @@ class Employee extends Model
     protected $Keytype = 'string';
 
     protected $fillable = [
+        'department_id',
         'employee_id',
         'first_name',
         'last_name',
