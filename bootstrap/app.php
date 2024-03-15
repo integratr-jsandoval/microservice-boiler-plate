@@ -97,6 +97,7 @@ $app->configure('baserepository');
 $app->register(MicroService\App\Providers\AppServiceProvider::class);
 $app->register(MicroService\App\Providers\AuthServiceProvider::class);
 $app->register(MicroService\App\Providers\EventServiceProvider::class);
+$app->register(MicroService\App\Providers\FormRequestServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
