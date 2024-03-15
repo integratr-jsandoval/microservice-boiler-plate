@@ -2,6 +2,7 @@
 
 namespace MicroService\App\Http\Controllers\Admin;
 
+use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use MicroService\App\Requests\TitleStoreRequest;
 use MicroService\App\Resources\TitleResource;
@@ -59,9 +60,9 @@ class TitleController extends BaseController
      *
      * @param string $titleid
      *
-     * @return TitleResource
+     * @return JsonResponse
      */
-    public function deleteTitle(string $titleid)
+    public function deleteTitle(string $titleid): JsonResponse
     {
         $title = $this->titleService->deleteTitle($titleid);
         return response()->json(['message' => 'Successfully Deleted!'], 200);

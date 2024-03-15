@@ -2,6 +2,7 @@
 
 namespace MicroService\App\Http\Controllers\Admin;
 
+use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller as BaseController;
 use MicroService\App\Requests\DepartmentStoreRequest;
 use MicroService\App\Resources\DepartmentResource;
@@ -59,9 +60,9 @@ class DepartmentController extends BaseController
      *
      * @param string $deptId
      *
-     * @return DepartmentResource
+     * @return JsonResponse
      */
-    public function deleteDepartment(string $deptId)
+    public function deleteDepartment(string $deptId): JsonResponse
     {
         $department = $this->departmentService->deleteDepartment($deptId);
         return response()->json(['message' => 'Successfully Deleted!'], 200);

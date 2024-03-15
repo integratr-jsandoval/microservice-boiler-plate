@@ -3,6 +3,7 @@
 namespace MicroService\App\Http\Controllers\Admin;
 
 use Illuminate\Cache\ArrayStore;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Laravel\Lumen\Routing\Controller as BaseController;
@@ -63,9 +64,9 @@ class EmployeeController extends BaseController
      *
      * @param string $employeeId
      *
-     * @return void
+     * @return JsonResponse
      */
-    public function deleteEmployee(string $employeeId)
+    public function deleteEmployee(string $employeeId): JsonResponse
     {
         $employee = $this->employeeService->deleteEmployee($employeeId);
         return response()->json(['message' => 'Successfully Deleted!'], 200);
