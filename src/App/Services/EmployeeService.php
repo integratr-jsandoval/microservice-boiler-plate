@@ -2,8 +2,14 @@
 
 namespace MicroService\App\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use MicroService\App\Exceptions\CreateException;
+use MicroService\App\Exceptions\NotFoundException;
+use MicroService\App\Exceptions\UpdateException;
 use MicroService\App\Models\Employee;
+use PhpParser\Node\Stmt\TryCatch;
 
 class EmployeeService
 {
@@ -16,7 +22,11 @@ class EmployeeService
      */
     public function storeEmployee(array $payload): Employee
     {
-        $employee = Employee::create($payload);
+        try {
+            return $employee = Employee::create($payload);
+        } catch (QueryException $th) {
+                throw new CreateException($th);
+        }
         return $employee;
     }
     /**
@@ -38,8 +48,9 @@ class EmployeeService
      */
     public function showEmployee(string $employeeId): Employee
     {
-        $employee = Employee::findOrFail($employeeId);
-        return $employee;
+        // $employee = Employee::findOrFail($employeeId);
+        // return $employee;
+        return $this->findOrFailEmployee($employeeId);
     }
     /**
      * Delete data
@@ -50,12 +61,12 @@ class EmployeeService
      */
     public function deleteEmployee(string $employeeId): Employee
     {
-        $employee = Employee::findOrFail($employeeId);
+        $employee = $this->findOrFailEmployee($employeeId);
         $employee->delete();
         return $employee;
     }
     /**
-     * Update data
+     * Update Data
      *
      * @param array $payload
      * @param string $employeeId
@@ -64,8 +75,31 @@ class EmployeeService
      */
     public function updateEmployee(array $payload, string $employeeId): Employee
     {
-        $employee = Employee::where('id', $employeeId)->firstOrFail();
-        $employee->update($payload);
+        $employee = $this->findOrFailEmployee($employeeId);
+        try {
+            $employee->update($payload);
+        } catch (QueryException $th) {
+            throw new UpdateException($th);
+        }
         return $employee;
+    }
+    /**
+     * Find Or Fail Handler
+     *
+     * @param string $employeeId
+     *
+     * @return Employee
+     */
+    public function findOrFailEmployee(string $employeeId): Employee
+    {
+        try {
+            return Employee::findOrFail($employeeId);
+        } catch (ModelNotFoundException $th) {
+                throw new NotFoundException($th);
+        }
+    }
+    public function paginateEmployee()
+    {
+        //
     }
 }

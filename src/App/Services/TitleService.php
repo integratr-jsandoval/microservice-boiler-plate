@@ -2,7 +2,13 @@
 
 namespace MicroService\App\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use MicroService\App\Exceptions\CreateException;
+use MicroService\App\Exceptions\NotFoundException;
+use MicroService\App\Exceptions\UpdateException;
+use MicroService\App\Models\Employee;
 use MicroService\App\Models\Title;
 use MicroService\App\Resources\TitleResource;
 
@@ -17,7 +23,11 @@ class TitleService
      */
     public function storeTitle(array $payload): Title
     {
-        $title = Title::create($payload);
+        try {
+            return $title = Title::create($payload);
+        } catch (QueryException $th) {
+            throw new CreateException($th);
+        }
         return $title;
     }
     /**
@@ -39,8 +49,8 @@ class TitleService
      */
     public function showTitle(string $titleid): Title
     {
-        $title = Title::findOrFail($titleid);
-        return $title;
+        return $this->findOrFailTitle($titleid);
+        //return $title;
     }
     /**
      * Delete data
@@ -65,8 +75,20 @@ class TitleService
      */
     public function updateTitle(array $payload, string $titleid): Title
     {
-        $title = Title::where('id', $titleid)->firstOrFail();
-        $title->update($payload);
+        $title = $this->findOrFailTitle($titleid);
+        try {
+            $title->update($payload);
+        } catch (QueryException $th) {
+            throw new UpdateException($th);
+        }
         return $title;
+    }
+    public function findOrFailTitle(string $titleid): Title
+    {
+        try {
+            return Title::findOrFail($titleid);
+        } catch (ModelNotFoundException $th) {
+            throw new NotFoundException($th);
+        }
     }
 }

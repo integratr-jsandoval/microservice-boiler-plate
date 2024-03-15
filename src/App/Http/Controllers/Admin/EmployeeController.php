@@ -84,4 +84,8 @@ class EmployeeController extends BaseController
         $employee = $this->employeeService->updateEmployee($request->validated(), $employeeId);
         return new EmployeeResource($employee);
     }
+    public function paginateEmployee()
+    {
+        //
+    }
 }

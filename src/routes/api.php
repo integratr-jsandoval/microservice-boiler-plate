@@ -23,6 +23,7 @@ Route::group([
         route::get('/{employeeId}/show', 'EmployeeController@showEmployee');
         route::delete('/{employeeId}/delete', 'EmployeeController@deleteEmployee');
         route::patch('/{employeeId}/update', 'EmployeeController@updateEmployee');
+        route::get('/paginate', 'EmployeeController@paginateEmployee');
     });
 
     Route::group(['prefix' => 'departments'], function () {

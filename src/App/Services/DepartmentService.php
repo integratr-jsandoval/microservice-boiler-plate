@@ -2,7 +2,12 @@
 
 namespace MicroService\App\Services;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use MicroService\App\Exceptions\CreateException;
+use MicroService\App\Exceptions\NotFoundException;
+use MicroService\App\Exceptions\UpdateException;
 use MicroService\App\Models\Department;
 use MicroService\App\Resources\DepartmentResource;
 
@@ -17,7 +22,11 @@ class DepartmentService
      */
     public function storeDepartment(array $payload): Department
     {
-        $department = Department::create($payload);
+        try {
+            return $department = Department::create($payload);
+        } catch (QueryException $th) {
+            throw new CreateException($th);
+        }
         return $department;
     }
     /**
@@ -39,8 +48,9 @@ class DepartmentService
      */
     public function showDepartment(string $deptId): Department
     {
-        $department = Department::findOrFail($deptId);
-        return $department;
+        // $department = Department::findOrFail($deptId);
+        // return $department;
+        return $this->findOrFailDepartment($deptId);
     }
    /**
     * Delete data
@@ -51,7 +61,7 @@ class DepartmentService
     */
     public function deleteDepartment(string $deptId): Department
     {
-        $department = Department::findOrFail($deptId);
+        $department = $this->findOrFailDepartment($deptId);
         $department->delete();
         return $department;
     }
@@ -65,8 +75,20 @@ class DepartmentService
      */
     public function updateDepartment(array $payload, string $deptId): Department
     {
-        $department = Department::where('id', $deptId)->firstOrFail();
-        $department->update($payload);
+        $department = $this->findOrFailDepartment($deptId);
+        try {
+            $department->update($payload);
+        } catch (QueryException $th) {
+            throw new UpdateException($th);
+        }
         return $department;
+    }
+    public function findOrFailDepartment(string $deptId): Department
+    {
+        try {
+            return Department::findOrFail($deptId);
+        } catch (ModelNotFoundException $th) {
+            throw new NotFoundException($th);
+        }
     }
 }

@@ -6,6 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
- public const RESOURCE_KEY = 'items';
- 
+    public const RESOURCE_KEY = 'items';
 }

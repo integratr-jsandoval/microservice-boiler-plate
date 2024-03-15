@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('titles', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('employee_id');
             $table->string('name');
             $table->integer('salary');
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
             $table->timestamps();
         });
     }
