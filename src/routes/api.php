@@ -28,6 +28,7 @@ Route::group([
         Route::get('/{employeeId}/show', 'employeeController@showEmployee');
         Route::delete('/{employeeId}/delete', 'employeeController@deleteEmployee');
         Route::patch('/{employeeId}/update', 'employeeController@updateEmployee');
+        Route::get('/paginate', 'employeeController@paginateEmployee');
     });
 });
 

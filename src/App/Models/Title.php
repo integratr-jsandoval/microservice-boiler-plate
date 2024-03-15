@@ -14,7 +14,8 @@ class Title extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-    'name',
-    'salary'
+        'employee_id',
+        'name',
+        'salary'
     ];
 }

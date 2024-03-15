@@ -9,6 +9,7 @@ class Employee extends Model
 {
     use HasUuids;
 
+    // use SearchableTraits;
     public const RESOURCE_KEY = 'employees';
       protected $table = self::RESOURCE_KEY;
       protected $keyType = 'string';

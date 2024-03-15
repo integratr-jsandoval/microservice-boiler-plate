@@ -15,6 +15,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->integer('salary');
+            $table->foreignUuid('employee_id');
+
+            $table->foreign('employee_id')
+            ->references('id')
+            ->on('employees')
+            ->onDelete('CASCADE');
             $table->timestamps();
         });
     }
