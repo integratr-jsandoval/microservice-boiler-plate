@@ -97,7 +97,11 @@ $app->configure('baserepository');
 $app->register(MicroService\App\Providers\AppServiceProvider::class);
 $app->register(MicroService\App\Providers\AuthServiceProvider::class);
 $app->register(MicroService\App\Providers\EventServiceProvider::class);
+<<<<<<< HEAD
 $app->register(MicroService\App\Providers\AuthorServiceProvider::class);
+=======
+$app->register(MicroService\App\Providers\FormRequestServiceProvider::class);
+>>>>>>> 90174a0d37ce80d94d695288c09760ab47b61244
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
