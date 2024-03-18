@@ -17,8 +17,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('price');
-            $table->foreign('quantity_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('quantity_id')
+            ->references('id')
+            ->on('stocks')
+            ->onDelete('cascade');
         });
     }
 
