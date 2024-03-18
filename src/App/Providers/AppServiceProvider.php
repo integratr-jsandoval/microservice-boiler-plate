@@ -17,5 +17,9 @@ class AppServiceProvider extends ServiceProvider
         Factory::guessFactoryNamesUsing(function ($class) {
             return 'Database\\Factories\\' . class_basename($class) . 'Factory';
         });
+        
+        //$this->app->bind(ItemContract::class, ItemService::class);
+
+
     }
-}
+}   
