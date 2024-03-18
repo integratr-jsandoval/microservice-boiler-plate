@@ -72,7 +72,12 @@ class StockService
     {
         return $this->findOrFailStock($stockid);
     }
-    public function getStock()
+    /**
+     * Collection of Data's
+     *
+     * @return Stock
+     */
+    public function getStock(): Stock
     {
         $stock = Stock::get();
         return $stock;

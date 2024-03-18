@@ -74,11 +74,11 @@ class ItemController extends BaseController
         return new ItemResource($item);
     }
     /**
-     * Collection of Data's
+     * Show specific id
      *
-     * @return void
+     * @return ItemResource
      */
-    public function getItem()
+    public function getItem(): ItemResource
     {
         $item = $this->itemService->getItem();
         return ItemResource::collection($item);

@@ -15,7 +15,6 @@ class StockStoreRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
             'quantity' => ['required']
         ];
     }

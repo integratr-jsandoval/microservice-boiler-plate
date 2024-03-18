@@ -76,9 +76,9 @@ class StockController extends BaseController
     /**
      * Collection of Data's
      *
-     * @return void
+     * @return StockResource
      */
-    public function getStock()
+    public function getStock(): StockResource
     {
         $stock = $this->stockService->getStock();
         return StockResource::collection($stock);

@@ -76,9 +76,9 @@ class ItemService
     /**
      * Collection of Data's
      *
-     * @return void
+     * @return Item
      */
-    public function getItem()
+    public function getItem(): Item
     {
         $item = Item::get();
         return $item;

@@ -14,7 +14,6 @@ class Stock extends Model
     protected $Keytype = 'string';
 
     protected $fillable = [
-        'name',
         'quantity'
     ];
 }
