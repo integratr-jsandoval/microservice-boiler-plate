@@ -15,9 +15,10 @@ class TitleStoreRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'employee_id' => ['required', Rule::exists('employees', 'id'), 'uuid'],
+            'quantity_id' => ['required', Rule::exists('employees', 'id'), 'uuid'],
             'name' => ['required'],
-            'salary' => ['required']
+            'description' => ['required'],
+            'price' => ['required']
         ];
     }
 }

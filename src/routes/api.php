@@ -7,8 +7,8 @@ Route::get('/', function () {
         'message' => 'Welcome to Micro Service Boilerplate!'
     ]);
 });
-<<<<<<< Updated upstream
-=======
+//<<<<<<< Updated upstream
+//=======
 
 Route::group([
     'namespace' => 'Admin',
@@ -16,7 +16,20 @@ Route::group([
 ], function () {
     Route::group(['prefix' => 'items'], function () {
         //
-        route::get('/', 'ItemController@items');
+        route::post('/store', 'ItemController@storeItem');
+        route::patch('/{itemid}/update', 'ItemController@updateItem');
+        route::delete('/{itemid}/delete', 'ItemController@deleteItem');
+        route::get('/{itemid}/show', 'ItemController@showItem');
+        route::get('/list', 'ItemController@getItem');
+    });
+
+    Route::group(['prefix' => 'stocks'], function () {
+        //
+        route::post('/store', 'StockController@storeStock');
+        route::patch('/{stockid}/update', 'StockController@updateStock');
+        route::delete('/{stockid}/delete', 'StockController@deleteStock');
+        route::get('/{stockid}/show', 'StockController@showStock');
+        route::get('/list', 'StockController@getStock');
     });
 
     Route::group(['prefix' => 'employees'], function () {
@@ -44,4 +57,4 @@ Route::group([
         route::patch('/{titleid}/update', 'TitleController@updateTitle');
     });
 });
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
