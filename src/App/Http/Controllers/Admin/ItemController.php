@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Laravel\Lumen\Routing\Controller as BaseController;
+use MicroService\App\Models\Item;
 use MicroService\App\Requests\ItemStoreRequest;
 use MicroService\App\Resources\ItemResource;
 use MicroService\App\Services\ItemService;
@@ -78,9 +79,20 @@ class ItemController extends BaseController
      *
      * @return ItemResource
      */
-    public function getItem(): ItemResource
+    public function getItem()
     {
         $item = $this->itemService->getItem();
         return ItemResource::collection($item);
+    }
+    /**
+     * Search by name or first letter
+     *
+     * @param [type] $name
+     *
+     * @return void
+     */
+    public function searchItem($name)
+    {
+        return Item::where("name", "like", "%" . $name . "%")->get();
     }
 }

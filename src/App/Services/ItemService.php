@@ -78,7 +78,7 @@ class ItemService
      *
      * @return Item
      */
-    public function getItem(): Item
+    public function getItem()
     {
         $item = Item::get();
         return $item;

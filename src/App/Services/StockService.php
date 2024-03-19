@@ -77,7 +77,7 @@ class StockService
      *
      * @return Stock
      */
-    public function getStock(): Stock
+    public function getStock()
     {
         $stock = Stock::get();
         return $stock;

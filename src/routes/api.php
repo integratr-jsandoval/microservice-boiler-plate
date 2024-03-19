@@ -19,6 +19,7 @@ Route::group([
         route::delete('/{itemid}/delete', 'ItemController@deleteItem');
         route::get('/{itemid}/show', 'ItemController@showItem');
         route::get('/list', 'ItemController@getItem');
+        route::get('search/{name}', 'ItemController@searchItem');
     });
 
     Route::group(['prefix' => 'stocks'], function () {
